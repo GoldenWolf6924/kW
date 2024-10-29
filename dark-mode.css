@@ -206,3 +206,67 @@ button#eliminar-seleccionados:hover {
 .icon-button:hover {
     color: #0056b3;
 }
+
+/* Estilo general para el contenedor de filtro por fecha */
+.filtro-fecha {
+    background: #2a2a2a; /* Fondo ligeramente más claro que el body */
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra más tenue */
+}
+
+/* Estilo para el título del filtro */
+.filtro-fecha h2 {
+    font-size: 18px;
+    color: #ffffff; /* Texto blanco para el título */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Estilo para los selectores de fecha */
+.filtro-fecha input[type="date"],
+.filtro-fecha input[type="time"] {
+    width: 48%;
+    padding: 10px;
+    margin: 5px 1%;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background-color: #424242; /* Fondo oscuro para inputs */
+    color: #e0e0e0; /* Texto claro */
+    transition: border-color 0.3s;
+}
+
+/* Efecto al enfocar los selectores de fecha */
+.filtro-fecha input[type="date"]:focus,
+.filtro-fecha input[type="time"]:focus {
+    border-color: #00acc1; /* Color más brillante al enfocar */
+}
+
+/* Botón para aplicar el filtro */
+.filtro-fecha button {
+    background-color: #007bff; /* Color del botón */
+    color: rgb(4, 0, 255);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+.filtro-fecha button:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 600px) {
+    .filtro-fecha input[type="date"],
+    .filtro-fecha input[type="time"] {
+        width: 100%; /* Aumenta el ancho en pantallas pequeñas */
+        margin: 5px 0; /* Ajusta el margen */
+    }
+}
