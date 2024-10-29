@@ -6,14 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const guardarBtn = document.getElementById("bote-guardar");
     const archivoImportar = document.getElementById("archivo-importar");
     const filtroSelect = document.getElementById("filtro");
-    const selectorMesAnio = document.getElementById("selector-mes-anio");
-    const mesSelect = document.getElementById("mes");
-    const anioSelect = document.getElementById("anio");
     let seleccionando = false;
 
     cargarDatos();
     establecerFechaHoraActual();
-    cargarAnios();
+ 
 
     document.getElementById("kw").addEventListener("input", function (e) {
         this.value = this.value.replace(/[^0-9]/g, ''); // Solo permite números
@@ -27,23 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
-    filtroSelect.addEventListener("change", function() {
-        const opcion = this.value;
-        if (opcion === "mes-año") {
-            selectorMesAnio.style.display = "block";
-        } else {
-            selectorMesAnio.style.display = "none";
-            filtrarDatos(opcion);
-        }
-    });
-
-    mesSelect.addEventListener("change", function() {
-        filtrarDatos("mes-año");
-    });
-
-    anioSelect.addEventListener("change", function() {
-        filtrarDatos("mes-año");
-    });
+    
 
     agregarBtn.addEventListener("click", agregarDato);
     boteBasuraBtn.addEventListener("click", toggleSeleccionar);
@@ -163,33 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function cargarAnios() {
-        const anioActual = new Date().getFullYear();
-        const anioSelect = document.getElementById("anio");
-        for (let i = anioActual; i >= anioActual - 10; i--) {
-            const option = document.createElement("option");
-            option.value = i;
-            option.textContent = i;
-            anioSelect.appendChild(option);
-        }
-    }
-    function filtrarDatos(opcion) {
-        listaDatos.innerHTML = '';
-        const datos = JSON.parse(localStorage.getItem("datos")) || [];
-        const mesSeleccionado = parseInt(mesSelect.value);
-        const anioSeleccionado = parseInt(anioSelect.value);
-
-        if (opcion === "todos") {
-            datos.forEach(dato => agregarDatoALista(dato));
-        } else if (opcion === "mes-año") {
-            datos.forEach(dato => {
-                const fechaDato = new Date(dato.fecha);
-                if (fechaDato.getMonth() === mesSeleccionado && fechaDato.getFullYear() === anioSeleccionado) {
-                    agregarDatoALista(dato);
-                }
-            });
-        }
-    }
+   
     function guardarDatos() {
         const datos = JSON.parse(localStorage.getItem("datos")) || [];
         if (datos.length === 0) {
