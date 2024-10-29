@@ -1,1 +1,1 @@
-# Para probar cambios antes de subirlos a main
+# Codigo para vigilar el gasto de kW
