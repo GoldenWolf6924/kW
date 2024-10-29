@@ -304,9 +304,10 @@ body {
 
 /* Contenido principal */
 .main-content {
-    margin-left: 20px; /* Espacio inicial para el contenido */
+    margin-left: 0; /* Quitar margen inicial para el contenido */
     padding: 20px;
     flex-grow: 1; /* Para que el contenido principal ocupe el espacio restante */
+    transition: margin-left 0.3s ease; /* Transición suave para el cambio de margen */
 }
 
 /* Estilo del botón para abrir/cerrar el menú */
@@ -324,8 +325,14 @@ body {
 
 /* Estilos para superponer el contenido cuando el menú esté abierto */
 .main-content.open {
-    filter: blur(3px); /* Aplicar un efecto de desenfoque al contenido */
-    pointer-events: none; /* Deshabilitar interacciones con el contenido */
+    filter: blur(4px); /* Aplicar un efecto de desenfoque */
 }
 
 
+
+.sidebar.hidden {
+    left: -200px; /* Asegúrate de que esté fuera de la vista */
+    opacity: 0; /* Invisible */
+    pointer-events: none; /* Deshabilita interacciones */
+    display: none; /* Evitar que ocupe espacio */
+}

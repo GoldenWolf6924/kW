@@ -1,8 +1,10 @@
-// Código para manejar la sidebar
 document.addEventListener("DOMContentLoaded", () => {
     const sidebar = document.getElementById("sidebar");
     const toggleLabel = document.getElementById("toggle-menu");
     const mainContent = document.querySelector('.main-content');
+
+    // Inicialmente, asegúrate de que la sidebar esté oculta
+    sidebar.classList.add('hidden');
 
     // Lógica para abrir y cerrar el menú
     toggleLabel.addEventListener('click', (event) => {
@@ -22,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function toggleSidebar() {
+        if (sidebar.classList.contains('hidden')) {
+            sidebar.classList.remove('hidden'); // Mostrar la sidebar
+        }
         sidebar.classList.toggle('visible'); // Alternar la visibilidad de la barra lateral
         mainContent.classList.toggle('open', sidebar.classList.contains('visible')); // Remover o agregar clase de desenfoque
     }
@@ -29,5 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeSidebar() {
         sidebar.classList.remove('visible'); // Ocultar el menú
         mainContent.classList.remove('open'); // Remover la clase que desenfoca el contenido
+        sidebar.classList.add('hidden'); // Asegurarse de que la sidebar esté oculta
     }
 });
