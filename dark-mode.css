@@ -1,4 +1,4 @@
-body {
+body { 
     font-family: 'Arial', sans-serif;
     background: #121212; /* Fondo oscuro */
     margin: 0;
@@ -44,20 +44,20 @@ input, textarea {
 
 input:focus, textarea:focus {
     border-color: #00acc1; /* Color más brillante al enfocar */
-    outline: none;
 }
 
 button {
     background-color: #007bff; /* Color principal de los botones */
     color: white;
     border: none;
-    padding: 6px;
-    border-radius: 6px;
-    cursor: pointer;
+    padding: 10px; /* Mantener el mismo padding */
+    border-radius: 8px;
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     margin: 8px 0;
     transition: background-color 0.3s;
+    /* Evitar cambios de tamaño en hover */
+    box-sizing: border-box; /* Asegura que el padding no cambie el tamaño */
 }
 
 button:hover {
@@ -81,17 +81,17 @@ li {
     color: #e0e0e0; /* Texto claro */
     font-size: 12px;
 }
+
 .slide-out {
     transform: translateX(100%);
     opacity: 0;
 }
+
 li.dragging {
     background-color: #ffcccc; /* Color de fondo cuando se arrastra */
     border: 2px dashed #dc3545; /* Borde para indicar el estado de arrastre */
     opacity: 0.7; /* Opacidad reducida para dar un efecto visual */
 }
-
-
 
 .checkbox {
     transform: scale(1.5);
@@ -141,7 +141,6 @@ li.dragging {
 
 button#agregar {
     background: linear-gradient(to bottom right, #2dc539, #321091);
-    margin: 0;
     color: white;
     border: none;
     padding: 10px;
@@ -154,12 +153,10 @@ button#agregar {
 
 button#agregar:hover {
     background: linear-gradient(to bottom right, #2dc539, #321091);
-    margin: 0;
 }
 
 button#eliminar-todo {
     background: linear-gradient(to bottom right, #cc4b4b, #fd0303);
-    margin: 0;
     color: white;
     border: none;
     padding: 10px;
@@ -172,12 +169,10 @@ button#eliminar-todo {
 
 button#eliminar-todo:hover {
     background: linear-gradient(to bottom right, #cc4b4b, #fd0303);
-    margin: 0;
 }
 
 button#eliminar-seleccionados {
     background: linear-gradient(to bottom right, #cc4b4b, #fd0303);
-    margin: 0;
     color: white;
     border: none;
     padding: 10px;
@@ -190,7 +185,6 @@ button#eliminar-seleccionados {
 
 button#eliminar-seleccionados:hover {
     background: linear-gradient(to bottom right, #cc4b4b, #fd0303);
-    margin: 0;
 }
 
 .icon-button {

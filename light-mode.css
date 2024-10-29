@@ -39,6 +39,7 @@ input, textarea {
     transition: border-color 0.3s;
     box-sizing: border-box;
     background-color: #f9f9f9; /* Fondo gris claro */
+    color: #333333; /* Texto oscuro */
 }
 
 input:focus, textarea:focus {
@@ -50,11 +51,11 @@ button {
     background-color: #007bff; /* Azul para botones */
     color: white;
     border: none;
-    padding: 6px;
-    border-radius: 6px;
+    padding: 10px; /* Mantener el mismo padding */
+    border-radius: 8px;
     cursor: pointer;
     width: 100%;
-    font-size: 14px;
+    font-size: 16px;
     margin: 8px 0;
     transition: background-color 0.3s;
 }
@@ -71,7 +72,7 @@ ul {
 li {
     background: #f9f9f9; /* Fondo gris claro */
     margin: 4px 0;
-    padding: 2px; /* Padding para mayor espacio */
+    padding: 2px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -80,22 +81,28 @@ li {
     color: #333333; /* Texto oscuro */
     font-size: 12px; /* Aumentar tamaño de texto */
 }
+
 .slide-out {
     transform: translateX(100%);
     opacity: 0;
 }
+
 li.dragging {
     background-color: #ffcccc; /* Color de fondo cuando se arrastra */
     border: 2px dashed #dc3545; /* Borde para indicar el estado de arrastre */
     opacity: 0.7; /* Opacidad reducida para dar un efecto visual */
 }
 
-
 .checkbox {
     transform: scale(1.5);
     margin-right: 10px;
     margin-left: 10px;
     cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    height: auto;
+    width: auto;
 }
 
 .btn-container {
@@ -134,7 +141,6 @@ li.dragging {
 
 button#agregar {
     background: linear-gradient(to bottom right, #28a745, #218838); /* Verde suave */
-    margin: 0;
     color: white;
     border: none;
     padding: 10px;
@@ -152,7 +158,6 @@ button#agregar:hover {
 button#eliminar-todo, 
 button#eliminar-seleccionados {
     background: linear-gradient(to bottom right, #dc3545, #c82333); /* Rojo suave */
-    margin: 0;
     color: white;
     border: none;
     padding: 10px;
