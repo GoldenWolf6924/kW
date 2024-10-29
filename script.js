@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const agregarBtn = document.getElementById("agregar");
     const listaDatos = document.getElementById("lista-datos");
@@ -5,12 +6,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const boteBasuraBtn = document.getElementById("bote-basura");
     const guardarBtn = document.getElementById("bote-guardar");
     const archivoImportar = document.getElementById("archivo-importar");
-    const filtroSelect = document.getElementById("filtro");
+    const sidebar = document.getElementById("sidebar");
+    const toggleLabel = document.getElementById("toggle-menu");
+    const mainContent = document.querySelector('.main-content');
+
     let seleccionando = false;
 
     cargarDatos();
     establecerFechaHoraActual();
- 
+
+    // Lógica para abrir y cerrar el menú
+    toggleLabel.addEventListener('click', (event) => {
+        event.stopPropagation(); // Evitar que el clic en el botón cierre la sidebar
+        toggleSidebar();
+    });
+
+    // Cerrar la sidebar si se hace clic fuera de ella
+    document.addEventListener('click', () => {
+        if (sidebar.classList.contains('visible')) {
+            closeSidebar();
+        }
+    });
+
+    sidebar.addEventListener('click', (event) => {
+        event.stopPropagation(); // Evitar que el clic dentro de la sidebar la cierre
+    });
 
     document.getElementById("kw").addEventListener("input", function (e) {
         this.value = this.value.replace(/[^0-9]/g, ''); // Solo permite números
@@ -19,18 +39,26 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('eliminar-todo').addEventListener('click', function() {
         const confirmDelete = confirm("¿Estás seguro de que quieres eliminar todos los registros?");
         if (confirmDelete) {
-            document.getElementById('lista-datos').innerHTML = ''; 
+            listaDatos.innerHTML = ''; 
             localStorage.removeItem('datos'); 
         }
     });
-    
-    
 
     agregarBtn.addEventListener("click", agregarDato);
     boteBasuraBtn.addEventListener("click", toggleSeleccionar);
     eliminarSeleccionadosBtn.addEventListener("click", eliminarSeleccionados);
     guardarBtn.addEventListener("click", guardarDatos);
     archivoImportar.addEventListener("change", importarDatos);
+
+    function toggleSidebar() {
+        sidebar.classList.toggle('visible'); // Alternar la visibilidad de la barra lateral
+        mainContent.classList.toggle('open', sidebar.classList.contains('visible')); // Remover o agregar clase de desenfoque
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('visible'); // Ocultar el menú
+        mainContent.classList.remove('open'); // Remover la clase que desenfoca el contenido
+    }
 
     function toggleSeleccionar() {
         seleccionando = !seleccionando;
@@ -91,15 +119,15 @@ document.addEventListener("DOMContentLoaded", () => {
         li.dataset.fecha = dato.fecha;
         li.dataset.hora = dato.hora;
         li.dataset.comentario = dato.comentario;
-    
+
         const fechaTexto = new Date(`${dato.fecha}T00:00:00`).toLocaleDateString('es-ES');
-    
+
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "checkbox";
         checkbox.style.display = 'none';
         li.appendChild(checkbox);
-    
+
         li.appendChild(document.createTextNode(`kW: ${dato.kw}, Fecha: ${fechaTexto}, Hora: ${dato.hora}, Comentario: ${dato.comentario}`));
         listaDatos.appendChild(li);
         ordenarLista();
@@ -143,8 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
         items.forEach(item => listaDatos.appendChild(item));
     }
 
-
-   
     function guardarDatos() {
         const datos = JSON.parse(localStorage.getItem("datos")) || [];
         if (datos.length === 0) {

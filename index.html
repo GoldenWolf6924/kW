@@ -3,38 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link id="theme-style" rel="stylesheet" href="dark-mode.css"> 
+    <link id="theme-style" rel="stylesheet" href="light-mode.css"> 
     <title>Gestión de kW</title>
 </head>
 <body>
-    <h1 style="display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 20px;">
-        kW Gastados
-        <label id="toggle-theme" class="icon-button" title="Cambiar tema" style="position: absolute; right: 10px; top: 30%; transform: translateY(-50%);">🌙</label>
-    </h1>
-    <div class="container">
-        <div class="btn-container">
-            <label for="bote-basura" class="icon-button">🗑️</label>
-            <input type="checkbox" id="bote-basura" style="display: none;"> 
-            
-            <label for="archivo-importar" class="icon-button" style="cursor: pointer;">📥</label>
-            <input type="file" id="archivo-importar" accept=".csv" style="display: none;">
-            
-            <label for="bote-guardar" class="icon-button">💾</label>
-            <input type="checkbox" id="bote-guardar" style="display: none;">
-        </div>
-        
-        <input type="tel" id="kw" inputmode="numeric" placeholder="kW" required>
-        <input type="date" id="fecha" required>
-        <input type="time" id="hora" required>
-        <textarea id="comentario" placeholder="Comentario (opcional)"></textarea>
-        
-        <button id="agregar">Agregar Dato</button>
-        <button id="eliminar-todo">Eliminar Todas</button>
-        <button id="eliminar-seleccionados" style="display: none;">Eliminar Seleccionados</button>
-
-        <ul id="lista-datos"></ul>
+   
+    <div class="sidebar" id="sidebar">
+        <h2>Menú</h2>
+        <a href="index.html">kW Gastados⚡</a>
+        <a href="stats.html">Estadísticas📊</a>
     </div>
     
+    <div class="main-content">
+        <h1 style="display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 20px;">
+            kW Gastados
+            <label id="toggle-menu" class="icon-button" title="Abrir/Cerrar Menú" style="position: absolute; left: 10px; top: 1px; cursor: pointer;">☰</label>
+            <label id="toggle-theme" class="icon-button" title="Cambiar tema" style="position: absolute; right: 10px; top: 1px; cursor: pointer;">☀️</label>
+        </h1>
+        
+        <div class="container">
+            <div class="btn-container">
+                <label for="bote-basura" class="icon-button">🗑️</label>
+                <input type="checkbox" id="bote-basura" style="display: none;"> 
+                
+                <label for="archivo-importar" class="icon-button" style="cursor: pointer;">📥</label>
+                <input type="file" id="archivo-importar" accept=".csv" style="display: none;">
+                
+                <label for="bote-guardar" class="icon-button">💾</label>
+                <input type="checkbox" id="bote-guardar" style="display: none;">
+            </div>
+            
+            <input type="tel" id="kw" inputmode="numeric" placeholder="kW" required>
+            <input type="date" id="fecha" required>
+            <input type="time" id="hora" required>
+            <textarea id="comentario" placeholder="Comentario (opcional)"></textarea>
+            
+            <button id="agregar">Agregar Dato</button>
+            <button id="eliminar-todo">Eliminar Todas</button>
+            <button id="eliminar-seleccionados" style="display: none;">Eliminar Seleccionados</button>
+
+            <ul id="lista-datos"></ul>
+        </div>
+    </div>
+
     <script src="theme-toggle.js" defer></script> 
     <script src="script.js" defer></script> 
 </body>

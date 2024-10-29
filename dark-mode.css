@@ -270,3 +270,79 @@ button#eliminar-seleccionados:hover {
         margin: 5px 0; /* Ajusta el margen */
     }
 }
+
+/* style.css */
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+}
+
+/* Estilo del menú lateral */
+.sidebar {
+    width: 200px;
+    background-color: #424242;
+    padding: 20px;
+    height: 100vh;
+    position: fixed; /* Fijo en el lado izquierdo */
+    left: -200px; /* Ocultar inicialmente */
+    transition: left 0.3s ease; /* Transición suave */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 100; /* Asegurar que esté encima */
+    left: -200px; /* Ocultar inicialmente */
+    opacity: 0; /* Invisible inicialmente */
+}
+
+/* Estilo de los enlaces en el menú */
+.sidebar h2 {
+    text-align: center;
+    color: #ffffff; /* Color del texto del título */
+}
+/* Cuando el menú es visible */
+.sidebar.visible {
+    left: 0; /* Mostrar el menú */
+    opacity: 1; /* Hacerlo visible */
+    visibility: visible; /* Cambiar visibilidad */
+}
+.sidebar a {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    text-decoration: none;
+    color: #ffffff; /* Color del texto de los enlaces */
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #ddd; /* Color al pasar el mouse */
+}
+
+/* Contenido principal */
+.main-content {
+    margin-left: 20px; /* Espacio inicial para el contenido */
+    padding: 20px;
+    flex-grow: 1; /* Para que el contenido principal ocupe el espacio restante */
+}
+
+/* Estilo del botón para abrir/cerrar el menú */
+.toggle-button {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    background-color: #f4f4f4;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 200px;
+    z-index: 200; /* Asegurar que esté encima del menú */
+}
+
+/* Estilos para superponer el contenido cuando el menú esté abierto */
+.main-content.open {
+    filter: blur(3px); /* Aplicar un efecto de desenfoque al contenido */
+    pointer-events: none; /* Deshabilitar interacciones con el contenido */
+}
+
+
