@@ -1,6 +1,3 @@
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const agregarBtn = document.getElementById("agregar");
     const listaDatos = document.getElementById("lista-datos");
@@ -25,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     
-
     agregarBtn.addEventListener("click", agregarDato);
     boteBasuraBtn.addEventListener("click", toggleSeleccionar);
     eliminarSeleccionadosBtn.addEventListener("click", eliminarSeleccionados);
@@ -102,19 +98,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         li.appendChild(document.createTextNode(` kW: ${dato.kw}, Fecha: ${fechaTexto}, Hora: ${dato.hora}, Comentario: ${dato.comentario}`));
 
-        const eliminarBtn = document.createElement("button");
-        eliminarBtn.textContent = "❌";
-        eliminarBtn.classList.add("eliminar-btn");
-        eliminarBtn.onclick = () => {
-            if (confirm("¿Estás seguro de que deseas eliminar este dato?")) {
-                eliminarDato(dato);
-                listaDatos.removeChild(li);
-            }
-        };
+        li.addEventListener("touchstart", handleTouchStart, false);
+        li.addEventListener("touchmove", handleTouchMove, false);
 
-        li.appendChild(eliminarBtn);
         listaDatos.appendChild(li);
         ordenarLista();
+    }
+
+    let startX;
+    let currentX;
+    let isDragging = false;
+
+    function handleTouchStart(event) {
+        startX = event.touches[0].clientX;
+        isDragging = false;
+    }
+
+    function handleTouchMove(event) {
+        currentX = event.touches[0].clientX;
+
+        const diffX = startX - currentX;
+
+        if (diffX > 200) {
+            // Si se arrastra más de 50 píxeles a la izquierda
+            const li = event.currentTarget;
+            if (confirm("¿Estás seguro de que deseas eliminar este dato?")) {
+                eliminarDato(li.dataset);
+                listaDatos.removeChild(li);
+            }
+        }
     }
 
     function eliminarDato(dato) {
@@ -161,16 +173,16 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("No hay datos para guardar.");
             return;
         }
-
-        const csvContent = "data:text/csv;charset=utf-8," 
-            + ["kW", "Fecha", "Hora", "Comentario"].join(",") + "\n" 
-            + datos.map(e => `${e.kw},${e.fecha},${e.hora},${e.comentario}`).join("\n");
+        
+        let csvContent = "data:text/csv;charset=utf-8," + 
+            "kW,Fecha,Hora,Comentario\n" + 
+            datos.map(dato => `${dato.kw},${dato.fecha},${dato.hora},${dato.comentario}`).join("\n");
 
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "datos.csv");
-        document.body.appendChild(link); // requerido para Firefox
+        link.setAttribute("download", "datos_kw.csv");
+        document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     }
@@ -179,18 +191,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = (e) => {
                 const contenido = e.target.result;
-                const lineas = contenido.split("\n").slice(1); // Saltar el encabezado
+                const lineas = contenido.split("\n").slice(1);
                 lineas.forEach(linea => {
-                    const datos = linea.split(",");
-                    if (datos.length === 4) {
-                        const dato = {
-                            kw: datos[0].trim(),
-                            fecha: datos[1].trim(),
-                            hora: datos[2].trim(),
-                            comentario: datos[3].trim() || 'Sin comentario' // Comentario opcional
-                        };
+                    const [kw, fecha, hora, comentario] = linea.split(",");
+                    if (kw && fecha && hora) {
+                        const dato = { kw, fecha, hora, comentario: comentario || 'Sin comentario' };
                         guardarDato(dato);
                         agregarDatoALista(dato);
                     }
@@ -200,4 +207,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
-

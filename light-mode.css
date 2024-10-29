@@ -1,0 +1,187 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #ffffff, #e6e6e6); /* Gradiente suave de colores */
+    margin: 0;
+    padding: 10px;
+    color: #333333; /* Texto oscuro */
+}
+
+.container {
+    max-width: 100%;
+    margin: auto;
+    background: #ffffff; /* Fondo blanco */
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: 700; /* Peso de fuente más fuerte */
+    color: #2C3E50; /* Azul oscuro para encabezados */
+}
+
+input::placeholder, 
+textarea::placeholder {
+    color: #999999; /* Gris claro para el placeholder */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+    background-color: #f9f9f9; /* Fondo gris claro */
+}
+
+input:focus, textarea:focus {
+    border-color: #0056b3; /* Azul más oscuro en focus */
+    outline: none;
+}
+
+button {
+    background-color: #007bff; /* Azul para botones */
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+    margin: 8px 0;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul más oscuro en hover */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #f9f9f9; /* Fondo gris claro */
+    margin: 4px 0;
+    padding: 2px; /* Padding para mayor espacio */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    color: #333333; /* Texto oscuro */
+    font-size: 12px; /* Aumentar tamaño de texto */
+}
+.slide-out {
+    transform: translateX(100%);
+    opacity: 0;
+}
+li.dragging {
+    background-color: #ffcccc; /* Color de fondo cuando se arrastra */
+    border: 2px dashed #dc3545; /* Borde para indicar el estado de arrastre */
+    opacity: 0.7; /* Opacidad reducida para dar un efecto visual */
+}
+
+
+.checkbox {
+    transform: scale(1.5);
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+}
+
+.btn-container button {
+    flex: 1; 
+    margin: 0 5px; 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 24px; 
+    color: #007bff; 
+}
+
+.eliminar-btn {
+    background: none;
+    border: none;
+    color: #dc3545; /* Rojo para eliminar */
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    line-height: 1;
+}
+
+.eliminar-btn:hover {
+    color: #c82333; /* Rojo oscuro en hover */
+}
+
+button#agregar {
+    background: linear-gradient(to bottom right, #28a745, #218838); /* Verde suave */
+    margin: 0;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 8px 0;
+    transition: background-color 0.3s;
+}
+
+button#agregar:hover {
+    background: linear-gradient(to bottom right, #218838, #1e7e34); /* Verde más oscuro en hover */
+}
+
+button#eliminar-todo, 
+button#eliminar-seleccionados {
+    background: linear-gradient(to bottom right, #dc3545, #c82333); /* Rojo suave */
+    margin: 0;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 8px 0;
+    transition: background-color 0.3s;
+}
+
+button#eliminar-todo:hover, 
+button#eliminar-seleccionados:hover {
+    background: linear-gradient(to bottom right, #c82333, #bd2130); /* Rojo más oscuro en hover */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 24px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #007bff;
+    transition: color 0.3s;
+    margin: 0;
+}
+
+.icon-button:hover {
+    color: #0056b3; /* Azul más oscuro en hover */
+}
